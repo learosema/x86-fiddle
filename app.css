@@ -1,0 +1,61 @@
+body {
+	font-family: monospace;
+	background: #222;
+}
+
+nav {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	background: dimgrey;
+}
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	display: inline-block;
+}
+
+ul li a {
+	padding: 8px;
+	border-radius: 3px;
+	background: mediumseagreen;
+	text-decoration: none;
+	color: #000;
+	font-weight: bold; 
+}
+
+#editor {
+	position: absolute;
+	left: 0;
+	top: 64px;
+	right: 50%;
+	bottom: 0;
+	border-right: 1px solid silver;
+}
+
+#result {
+	position: absolute;
+	left: 50%;
+	top: 64px;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
+
+
+
+
+/*** js-dos CSS ***/
+.dosbox-container { position: relative; min-width: 320px; min-height: 200px; width: 640px; height: 400px; }

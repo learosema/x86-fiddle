@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>X86 Fiddler</title>
+	<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a id="btnRun" href="#compile">run</a></li>
+		</ul>
+	</nav>
+	<div id="editor"></div>
+	<div id="result"><div id="dosbox">
+		<div class=".dosbox-container">
+			<canvas class="dosbox-canvas"></canvas>
+		</div>	
+	</div></div>
+<script type="text/html" id="demoCode">		org	100h
+
+section 	.text
+
+init_gfx:	mov	ax,13h
+		int	10h
+		mov	di,0a000h
+		mov	es,di
+start:		xor	di,di		; pixel offset
+		xor	bx,bx		; x position
+		xor	cx,cx		; y position
+		call	ticks		; dx=tick count
+pixel:		xor	ax,ax
+		sub	ax,04567h
+		sub	ax,dx
+		add	ax,bx
+		add	ax,cx			
+		imul	ax,ax
+		mov	si,bx
+		imul	bx,cx
+		sub	ax,bx
+		sub	ax,bx
+		mov	bx,si
+		shr	ax,8
+		add	ax,dx
+		mov	[es:di+bx],al
+		inc	bx		; increment x counter
+		cmp	bx,320
+		jnz	pixel
+		add	di,bx			
+		xor	bx,bx		; reset x counter
+		inc	cx		; increment y counter
+		cmp	cx,200
+		jnz	pixel
+		mov	ah,01
+		int	16h
+		jz	start
+		mov	ah,0
+		int	16h
+		cmp	al,27                  ; unless escape pressed
+		jnz	start		; go to next frame
+quit:		mov	ax,3
+		int 	10h
+		int 	20h
+ticks:  	; returns DX=Tickcount
+		push	es
+		push	cx
+		mov	cx,[initialTime]
+		push	40h
+		pop	es
+		mov	dx,[es:6ch]
+		cmp	cx,0
+		jnz	ticks_1
+		mov	cx,dx
+		mov	[initialTime],cx
+ticks_1:	sub	dx,cx
+		pop	cx
+		pop	es
+		ret
+
+section 	.data
+
+initialTime:	dw 0
+
+section 	.bss
+</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/theme-terminal.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/mode-assembly_x86.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://unpkg.com/fake-xml-http-request@1.4.0"></script>
+	<script src="smaller-dosbox-api.js"></script>
+	<!-- script src="https://js-dos.com/cdn/js-dos-api.js"></script -->
+	<script src="app.js"></script>
+</body>
+</html>

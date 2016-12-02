@@ -77,7 +77,13 @@ const DOS = {
 		})
 	},
 	run: (executable) => {
-		DOS.module.ccall('dosbox_main', 'int', ['string'], [executable]);
+		try {
+			DOS.module.ccall('dosbox_main', 'int', ['string'], [executable]);
+		} catch (e) {
+			if (exception === 'SimulateInfiniteLoop') {} else {
+            	console.error(exception);
+            }
+		}
 	}
 }
 

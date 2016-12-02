@@ -20,5 +20,5 @@ function run() {
 }
 
 q('#btnRun').onclick = () => {
-	DOS.init().then(() => DOS.mountZip("https://js-dos.com/cdn/digger.zip")).then(() => DOS.run("./DIGGER.COM"))
+	DOS.init().then(() => DOS.mountZip("https://terabaud.github.io/x86-fiddle/dos.zip")).then(() => DOS.run("./ANIM.COM"))
 }

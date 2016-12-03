@@ -80,7 +80,7 @@ const DOS = {
 		try {
 			DOS.module.ccall('dosbox_main', 'int', ['string'], [executable]);
 		} catch (e) {
-			if (exception === 'SimulateInfiniteLoop') {} else {
+			if (e !== 'SimulateInfiniteLoop') {
             	console.error(exception);
             }
 		}

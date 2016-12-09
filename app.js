@@ -8,5 +8,10 @@ editor.setValue(q('#demoCode').textContent)
 
 
 q('#btnRun').onclick = () => {
-	DOS.init().then(() => DOS.mountZip("https://terabaud.github.io/x86-fiddle/dos.zip")).then(() => DOS.run("./ANIM.COM"))
+
+
+
+
+
+
 }

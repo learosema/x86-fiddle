@@ -38,11 +38,15 @@ const DOS = {
             return DOS.module.setStatus(status); 
     	} 
 	},
+	initFS: {
+
+	},
 	run: function() {
-		
-		http(CDN).then(script => {
-			const Module = DOS.module
-			
-		})
+		const Module = DOS.module
+		Module.preRun.push(DOS.initFS)
+		Module['arguments'] = ['./RUNME.BAT']
+		var script = document.createElement('script')
+        script.src = "dosbox.js"
+        document.body.appendChild(script)	
 	}
 }

@@ -1466,6 +1466,7 @@ Module['FS_createPath']('/', 'nasm', true, true);
     
   }
   if (Module['calledRun']) {
+    console.log("CALLED RUN !")
     runWithFS();
   } else {
     if (!Module['preRun']) Module['preRun'] = [];
@@ -1480,7 +1481,7 @@ Module['FS_createPath']('/', 'nasm', true, true);
 Module['arguments'] = [ './RUNME.BAT' ];
 </script>
     <script>
-
+/*
           (function() {
             var memoryInitializer = 'dosbox.html.mem';
             if (typeof Module['locateFile'] === 'function') {
@@ -1493,7 +1494,7 @@ Module['arguments'] = [ './RUNME.BAT' ];
             xhr.responseType = 'arraybuffer';
             xhr.send(null);
           })();
-
+*/
           var script = document.createElement('script');
           script.src = "dosbox.js";
           document.body.appendChild(script);
